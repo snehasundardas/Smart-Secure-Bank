@@ -40,7 +40,7 @@ A banking management system built with Spring Boot and Angular, this repository 
 
 - **Backend**: Spring Boot 3.x
 - **Security**: Spring Security with JWT
-- **Database**: PostgreSQL
+- **Database**: Oracle
 - **Search Engine**: Elasticsearch (for transaction history)
 - **Frontend**: Angular
 - **Build Tool**: Maven
