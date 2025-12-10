@@ -1,12 +1,29 @@
 package ma.hmzelidrissi.bankmanagementsystem.entities;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import lombok.*;
-import ma.hmzelidrissi.bankmanagementsystem.enums.TransactionStatus;
-import ma.hmzelidrissi.bankmanagementsystem.enums.TransactionType;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import ma.hmzelidrissi.bankmanagementsystem.enums.TransactionStatus;
+import ma.hmzelidrissi.bankmanagementsystem.enums.TransactionType;
 
 @Entity
 @Table(name = "transactions")
@@ -25,6 +42,7 @@ public class Transaction {
     private TransactionType type;
 
     @Column(nullable = false)
+    @Positive(message = "Transaction amount must be positive.")
     private double amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,7 +57,7 @@ public class Transaction {
     @Column(nullable = false)
     private TransactionStatus status;
 
-    @Column(unique = true)
+    @Column(nullable=false,unique = true)
     private String reference;
 
     private String description;
